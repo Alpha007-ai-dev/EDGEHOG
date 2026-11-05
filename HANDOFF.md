@@ -229,3 +229,23 @@ Részletes specifikáció: ChatGPT „végleges termékspecifikáció” (a chat
 - Az otthoni gépen (C:\dev\edgehog) továbbra is fut a `collect.py` ütemezett feladat („EDGEHOG gyujto”, 2 percenként).
 - KÖVETKEZŐ LÉPÉS új munkamenetben: hozzáférés-ellenőrzés, majd a két spike (pm-AMM devnet deposit/withdraw;
   Jupiter /orderbook + POST /orders aláíratlan tx).
+
+## 2026-11-05 este – offline elkészült (app/, research/)
+- `app/lib/execution.ts` – költségmotor: középár, spread, csúszás (könyvbejárás), díj (mért tábla / dokumentált képlet /
+  pontos Jupiter-ajánlat), USD-ben, átfedés nélkül; kötés utáni költség és markout. Tesztek: `cd app && npm test` (Node ≥ 22.18).
+- `app/lib/pmamm.ts` – pm-AMM LP-szimulátor (dinamikus L0·√(T−t) és statikus): visszaadott likviditás, LVR, díj,
+  készlet-ármozgás külön, elszámolási azonosság tesztelve; a Monte Carlo tesztek visszaadják a tanulmányt (E[W_T]≈W0/2,
+  egyenletes LVR). `scripts/lp_sim.ts` valódi Polymarket-ártörténeten fut.
+- `app/scripts/report_offline.ts` – végrehajtási riport a kutatási adatból; `app/reports/`: 102 tárca, 10 487 kötés,
+  $1,44M középáron, $66 676 költség (4,62%); a toplista #1 236 kötésén $11 938 (7,6%), havi toplista-P&L $8 773 (más időablak).
+- `app/scripts/preview.ts` – élő 100/500/1000 USD költségsor egy Jupiter-piacra (Polymarket-könyvből) + nyers Jupiter
+  `/orderbook` válasz. MÉG NEM FUTOTT ÉLESBEN.
+- `app/prototype/index.html` – kattintható prototípus (5 nézet; a Pre-trade nézet MINTA-könyvvel). Publikálva privát
+  artifactként is.
+- `research/FINDINGS.md` – angol kutatási összefoglaló; `research/x_thread_draft.md` – X-szál vázlat (átnézésre).
+### KÖVETKEZŐ LÉPÉS (új munkamenet, hálózattal)
+1. Hozzáférés-ellenőrzés (Jupiter, Polymarket, Kalshi, devnet, npm), `cd app && npm test`.
+2. `npm run preview -- POLY-<id>-<0|1>` élő piacon; a Jupiter `/orderbook` és `POST /orders` válasz mezőinek feltérképezése,
+   a díj összevetése a mért táblával.
+3. pm-AMM devnet spike: SDK, pool state, deposit + withdraw tesztkulccsal; a szimulátor számainak összevetése az SDK-val.
+4. Ha mindkét spike működik: Next.js-váz (specifikáció szerinti stack), a prototípus nézetei valódi adatra kötve.
