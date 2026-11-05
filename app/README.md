@@ -16,3 +16,6 @@ The 4–5 % figure in the research is the cost of ONE entry versus the mid, not 
   real Polymarket price history (SIMULATED, the pool did not exist there).
 - `scripts/report_offline.ts` — per-wallet / all-wallet execution report from the research data;
   examples in `reports/`.
+- `prototype/index.html` — clickable UI prototype (no build step): pre-trade preview on a SAMPLE book,
+  execution report from the research data, footprint replay of a real live market tape, pm-AMM LP
+  simulator on a real price history. Engine and simulator are inline ports of `lib/`.
