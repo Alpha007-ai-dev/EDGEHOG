@@ -1,0 +1,11 @@
+{
+  "name": "edgehog-app",
+  "private": true,
+  "type": "module",
+  "description": "EDGEHOG execution intelligence – engine and (later) Next.js app",
+  "engines": { "node": ">=22.18" },
+  "scripts": {
+    "test": "node --test lib/*.test.ts",
+    "preview": "node scripts/preview.ts"
+  }
+}
