@@ -1,0 +1,68 @@
+EDGEHOG – helyszín-teszt: Polymarket (Jupiteren át) vs. Kalshi (DFlow-n át), azonos meccsek
+Idő: 2026-11-05 09:26, a következő 48 óra kétkimenetes sportmeccsei
+
+Jupiter-díj szerződésenként (saját kötéseinkből, medián): 0.00–0.05: 0.09¢, 0.15–0.20: 0.77¢, 0.30–0.35: 1.12¢, 0.45–0.50: 1.25¢, 0.60–0.65: 1.19¢, 0.75–0.80: 0.91¢, 0.90–0.95: 0.45¢
+  Polymarket tag 'sports': 100 esemény, eddig 0 meccs (48 órán belül)
+  Polymarket tag 'nba': 100 esemény, eddig 11 meccs (48 órán belül)
+  Polymarket tag 'nhl': 100 esemény, eddig 25 meccs (48 órán belül)
+  Polymarket tag 'nfl': 100 esemény, eddig 25 meccs (48 órán belül)
+  Polymarket tag 'cfb': 100 esemény, eddig 25 meccs (48 órán belül)
+  Polymarket tag 'cbb': 3 esemény, eddig 25 meccs (48 órán belül)
+  Polymarket tag 'tennis': 100 esemény, eddig 58 meccs (48 órán belül)
+  Polymarket tag 'atp': 8 esemény, eddig 58 meccs (48 órán belül)
+  Polymarket tag 'wta': 3 esemény, eddig 58 meccs (48 órán belül)
+  Polymarket tag 'esports': 100 esemény, eddig 58 meccs (48 órán belül)
+  Polymarket tag 'mma': 34 esemény, eddig 58 meccs (48 órán belül)
+  Polymarket tag 'ufc': 63 esemény, eddig 58 meccs (48 órán belül)
+  Polymarket tag 'boxing': 16 esemény, eddig 58 meccs (48 órán belül)
+  Polymarket tag 'cricket': 100 esemény, eddig 58 meccs (48 órán belül)
+  Polymarket tag 'basketball': 100 esemény, eddig 58 meccs (48 órán belül)
+  Polymarket tag 'hockey': 100 esemény, eddig 58 meccs (48 órán belül)
+  Polymarket tag 'football': 100 esemény, eddig 58 meccs (48 órán belül)
+  Polymarket tag 'baseball': 21 esemény, eddig 60 meccs (48 órán belül)
+Polymarket: 60 meccs
+  Kalshi sorozatok: 370 (KXUNRIVALEDGAME, KXLPBGAME, KXVTBGAME, KXR6GAME, KXFIBAGAME, KXPLLGAME, KXLPLMATCH, KXTFF1LIGGAME, KXIBPLGAME, KXDARTSMATCH, KXPSLGAME, KXCOPADELREYGAME…)
+Kalshi: 949 meccs
+DFlow API minta: - 'nem elérhető'
+
+Párosított meccsek: 45
+  Magic vs. Suns                                          ↔ Orlando vs Phoenix                            (0.90)
+  Heat vs. Warriors                                       ↔ Miami vs Golden State                         (0.90)
+  Wizards vs. Hawks                                       ↔ Washington vs Atlanta                         (0.90)
+  Celtics vs. Hornets                                     ↔ Boston vs Charlotte                           (0.90)
+  76ers vs. Cavaliers                                     ↔ Philadelphia vs Cleveland                     (0.90)
+  Jazz vs. Mavericks                                      ↔ Utah vs Dallas                                (0.90)
+  Thunder vs. Grizzlies                                   ↔ Oklahoma City vs Memphis                      (0.90)
+  Raptors vs. Bucks                                       ↔ Toronto vs Milwaukee                          (0.90)
+  Timberwolves vs. Pelicans                               ↔ Minnesota vs New Orleans                      (0.90)
+  Trail Blazers vs. Lakers                                ↔ Portland vs Los Angeles L                     (0.90)
+  Spurs vs. Kings                                         ↔ San Antonio vs Sacramento                     (0.90)
+  Stars vs. Blue Jackets                                  ↔ Dallas vs Columbus                            (0.90)
+  Bruins vs. Penguins                                     ↔ Boston vs Pittsburgh                          (0.90)
+  Blackhawks vs. Lightning                                ↔ Chicago vs Tampa Bay                          (0.90)
+  Flyers vs. Rangers                                      ↔ Philadelphia vs New York R                    (0.90)
+  [diag] Polymarket book minta: {"market": "0x93458cdb046d83ab182e03834645e71b3d519ffde35e8decb48e122af749e8ad", "asset_id": "99297519891545885362760554328112599904669784637913361291049204260896812777303", "timestamp": "1793867263237", "hash": "b14e1c3c693c50ed55f225c9a761c06ef60e715d", "bids": [{"price": "0.01", "size": "108535.1
+  [diag] Kalshi orderbook minta: {"orderbook_fp": {"no_dollars": [["0.0100", "1345997.94"], ["0.0200", "100417.00"], ["0.0300", "65331.00"], ["0.0400", "46634.00"], ["0.0500", "37364.00"], ["0.0600", "31238.25"], ["0.0700", "54223.05"], ["0.0800", "45902.45"], ["0.0900", "20735.66"], ["0.1000", "18664.00"], ["0.1100", "16984.00"], 
+
+EREDMÉNY – teljes költség szerződésenként (ár + díj); különbség = Polymarket/Jupiter − Kalshi
+  $   50: 90 kimenet; |különbség| medián 1.10 sz.pont, 75%: 2.50, 90%: 7.80; >1 sz.pont: 51%, >2: 32%, >5: 18%; Kalshi olcsóbb: 16%; megtakarítás medián 2.0%
+          csak Polymarketen teljesíthető: 0, csak Kalshin: 0
+  $  500: 90 kimenet; |különbség| medián 1.16 sz.pont, 75%: 11.56, 90%: 21.25; >1 sz.pont: 51%, >2: 42%, >5: 31%; Kalshi olcsóbb: 20%; megtakarítás medián 2.2%
+          csak Polymarketen teljesíthető: 0, csak Kalshin: 0
+  $ 2000: 90 kimenet; |különbség| medián 2.08 sz.pont, 75%: 8.66, 90%: 18.91; >1 sz.pont: 62%, >2: 50%, >5: 36%; Kalshi olcsóbb: 19%; megtakarítás medián 3.6%
+          csak Polymarketen teljesíthető: 0, csak Kalshin: 0
+
+Legnagyobb különbségek ($500):
+  Joao Lucas Da Silva          PM+Jup 0.548  Kalshi 0.940  (-39.2 sz.pont)  Costa do Sauipe: Joao Lucas Da Silva vs 
+  Mary Stoiana                 PM+Jup 0.246  Kalshi 0.549  (-30.3 sz.pont)  Prudential Hong Kong Tennis Open: Sorana
+  Elmer Moeller                PM+Jup 0.654  Kalshi 0.944  (-29.0 sz.pont)  Costa do Sauipe: Joao Lucas Da Silva vs 
+  Gianluca Cadenasso           PM+Jup 0.532  Kalshi 0.792  (-26.0 sz.pont)  Taranto: Jay Clarke vs Gianluca Cadenass
+  Aidan Mayo                   PM+Jup 0.690  Kalshi 0.944  (-25.4 sz.pont)  Charlottesville: Aidan Mayo vs Alastair 
+  Jay Clarke                   PM+Jup 0.512  Kalshi 0.761  (-24.9 sz.pont)  Taranto: Jay Clarke vs Gianluca Cadenass
+  Wizards                      PM+Jup 0.325  Kalshi 0.568  (-24.3 sz.pont)  Wizards vs. Hawks
+  Sumit Nagal                  PM+Jup 0.522  Kalshi 0.736  (-21.3 sz.pont)  Taranto: Sumit Nagal vs Hugo Grenier
+  Max Hans Rehberg             PM+Jup 0.699  Kalshi 0.911  (-21.2 sz.pont)  Charlottesville: Daniel Milavsky vs Max 
+  Filip Misolic                PM+Jup 0.613  Kalshi 0.798  (-18.5 sz.pont)  Costa do Sauipe: Facundo Acosta vs Filip
+
+Megjegyzés: a Kalshi-oldalon a DFlow saját díja nincs benne (alsó becslés); a Jupiter-díj a saját mérésünk.
+KESZ 

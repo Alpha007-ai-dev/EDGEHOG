@@ -1,0 +1,50 @@
+EDGEHOG – CLV a középárhoz (spread nélkül), saját árhatás nélkül
+Statisztikai becslés nyilvános adatokból, nem minősítés.
+
+A) MECCS ELŐTTI KÖTÉSEK, MIND – CLV a kötéskori középárhoz (perces ár) mérve
+                  kötés  piac      kötési árhoz (régi)             középárhoz     különbség = spread
+  toplista         4871  3022       +0.09% ±0.50%          +1.42% ±0.55%            +1.33%
+  átlag             289    76       -2.11% ±0.66%          -0.37% ±0.68%            +1.74%
+B) minta: 1001 kötés (601 élő), 706 piac
+  50/1001 kötés, eddig mérve: 26
+  100/1001 kötés, eddig mérve: 65
+  200/1001 kötés, eddig mérve: 136
+  300/1001 kötés, eddig mérve: 216
+  350/1001 kötés, eddig mérve: 249
+  400/1001 kötés, eddig mérve: 278
+  450/1001 kötés, eddig mérve: 315
+  500/1001 kötés, eddig mérve: 344
+  700/1001 kötés, eddig mérve: 474
+  750/1001 kötés, eddig mérve: 508
+  800/1001 kötés, eddig mérve: 536
+  900/1001 kötés, eddig mérve: 601
+  950/1001 kötés, eddig mérve: 635
+  1000/1001 kötés, eddig mérve: 673
+
+B) MINTA a Polymarket valódi kötéseiből – közép-CLV (relatív, összegsúlyozva, ± piaconként)
+   mérve: 674 kötés, Polymarket-pár: 640
+
+  toplista, meccs előtt (122 kötés)
+      1m:  Jupiter-kötés   +0.04% ±0.32%  (n=117)   hasonló PM-kötések   +0.59% ±0.77%  (n=113)   többlet   -0.55% ±1.03%  (n=110)
+      5m:  Jupiter-kötés   +0.26% ±0.72%  (n=100)   hasonló PM-kötések   +0.71% ±1.38%  (n=109)   többlet   -0.46% ±1.70%  (n=98)
+     15m:  Jupiter-kötés   +3.53% ±2.70%  (n=96)   hasonló PM-kötések   +1.34% ±8.10%  (n=106)   többlet   +7.47% ±6.06%  (n=90)
+
+  toplista, élő (517 kötés)
+      1m:  Jupiter-kötés   +2.43% ±1.58%  (n=513)   hasonló PM-kötések   +3.59% ±0.90%  (n=503)   többlet   -1.31% ±1.43%  (n=499)
+      5m:  Jupiter-kötés   -4.81% ±3.72%  (n=495)   hasonló PM-kötések   +3.31% ±2.19%  (n=500)   többlet   -8.57% ±3.21%  (n=485)
+     15m:  Jupiter-kötés  -13.47% ±9.57%  (n=351)   hasonló PM-kötések   +5.88% ±5.01%  (n=432)   többlet  -19.66% ±10.62% (n=347)
+
+  átlag, meccs előtt (4 kötés)
+      1m:  Jupiter-kötés   -0.18% ±0.02%  (n=4)   hasonló PM-kötések   -0.15% ±0.08%  (n=4)   többlet   -0.03% ±0.06%  (n=4)
+      5m:  Jupiter-kötés   +1.05% ±–      (n=3)   hasonló PM-kötések   +0.23% ±0.01%  (n=3)   többlet   +1.17% ±–      (n=2)
+     15m:  Jupiter-kötés   +4.02% ±–      (n=1)   hasonló PM-kötések   +5.83% ±1.17%  (n=3)   többlet   -2.73% ±–      (n=1)
+
+  átlag, élő (31 kötés)
+      1m:  Jupiter-kötés   -1.71% ±4.34%  (n=31)   hasonló PM-kötések  -46.64% ±12.60% (n=28)   többlet  +45.19% ±14.95% (n=28)
+      5m:  Jupiter-kötés  -66.14% ±24.07% (n=29)   hasonló PM-kötések  -74.80% ±17.99% (n=28)   többlet   +2.66% ±5.24%  (n=27)
+     15m:  Jupiter-kötés  -29.94% ±30.99% (n=6)   hasonló PM-kötések  -35.13% ±23.67% (n=12)   többlet  -19.83% ±20.21% (n=6)
+
+Diagnosztika: v2: ok: 684; nincs közép a kötés előtt: 327; v2: lapozási korlát (nem értem vissza a kötésig): 15
+
+Olvasat: 'többlet' > 0 = a Jupiter-kötés jobb irányba ment, mint az átlagos hasonló méretű Polymarket-kötés ugyanott (a mechanikus árhatás mindkettőben benne van).
+KESZ 

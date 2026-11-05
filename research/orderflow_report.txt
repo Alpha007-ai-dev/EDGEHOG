@@ -1,0 +1,52 @@
+Minta: 300 piac
+  10/300 piac
+  20/300 piac
+  30/300 piac
+  40/300 piac
+  50/300 piac
+  60/300 piac
+  70/300 piac
+  80/300 piac
+  90/300 piac
+  100/300 piac
+  110/300 piac
+  120/300 piac
+  130/300 piac
+  140/300 piac
+  150/300 piac
+  160/300 piac
+  170/300 piac
+  180/300 piac
+  190/300 piac
+  200/300 piac
+  210/300 piac
+  220/300 piac
+  230/300 piac
+  240/300 piac
+  250/300 piac
+  260/300 piac
+  270/300 piac
+  280/300 piac
+  290/300 piac
+  300/300 piac
+EDGEHOG order-flow teszt – élő Polymarket-meccsek, 1 perces gyertyák (előre rögzített protokoll)
+Gyertyák: 21164, piacok: 169
+
+H1 – ABSZORPCIÓ (|delta| >= 2× átlag, ár <= 1 cent): mozgás a DELTA irányában
+  FŐ: 15 perc: -0.28 ±0.69 sz.pont (medián -0.00; n=588, piac=157)
+      5 perc: +0.47 ±0.35 sz.pont (medián +0.00; n=588, piac=157)
+  tolás (ugyanekkora delta, ár > 1 cent): 15p +0.98 ±0.85 sz.pont (medián +1.00; n=636, piac=147); 5p +0.30 ±0.42 sz.pont (medián +0.50; n=636, piac=147)
+  minden gyertya (delta irányában):       15p +0.23 ±0.13 sz.pont (medián -0.00; n=21164, piac=169); 5p +0.21 ±0.06 sz.pont (medián +0.00; n=21164, piac=169)
+  erős abszorpció (|delta| >= 4× átlag):  15p +0.74 ±0.92 sz.pont (medián +0.39; n=216, piac=105)
+  abszorpció: 15 perc múlva a delta irányában 274, ellene 254, ±0,5 centen belül 60
+  tolás: 15 perc múlva a delta irányában 328, ellene 280, ±0,5 centen belül 28
+
+H2 – ESEMÉNY ELŐTTI JEL (ugrás >= 10 cent egy gyertyán belül), az ugrás előtti 3 gyertya
+  normalizált delta az ugrás irányában: ugrás előtt +0.081 ±0.154 (n=479, piac=127) | többi gyertya +0.033 ±0.029
+  kötésszám az átlaghoz képest (1 = átlag): ugrás előtt +1.194 ±0.055 (n=479, piac=127) | többi gyertya +0.683 ±0.086
+  nagy kötések nettó száma az ugrás irányában: ugrás előtt -0.123 ±0.122 (n=479, piac=127) | többi gyertya +0.044 ±0.014
+
+Olvasat: H1 pozitív = abszorpció után az agresszor irányába tör ki az ár; negatív = a passzív oldal nyer.
+H2: ha az ugrás előtti értékek nem térnek el a többi gyertyától, a kötésfolyam nem jelzi előre az eseményeket.
+Diagnosztika: nincs kezdési idő / token: 102; piac kihagyva: lapozási korlát: 2
+KESZ 

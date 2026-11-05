@@ -1,0 +1,6 @@
+.jupkey
+.env
+data/
+output/
+__pycache__/
+node_modules/

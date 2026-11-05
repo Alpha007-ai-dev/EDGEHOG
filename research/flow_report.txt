@@ -1,0 +1,115 @@
+EDGEHOG Flow Intelligence – előre rögzített protokoll (2026-11-04)
+Statisztikai becslés nyilvános adatokból, nem minősítés. Egység: százalékpont, a kereskedő javára pozitív.
+Többlet = a Jupiter-kötés utáni középár-mozgás − a hasonló, más Polymarket-kötések utáni mozgás átlaga.
+
+FŐ MÉRŐSZÁM (S2, live, 5m, kontroll ±60 mp): többlet +0.34 ±0.19 (medián +0.00; n=4136, piac=1560)
+  (negatív = a Jupiter-forgalom kevésbé informált a kontrollnál = alacsonyabb relatív adverse selection)
+
+MÁSODLAGOS – minta × fázis × horizont × kontrollablak (többlet, sz.pont)
+
+  S2, live (5511 mérhető kötés)
+      1m Jupiter saját mozgás: -0.25 ±0.23 (medián -0.00; n=5499, piac=2060)
+         többlet w10    -0.52 ±0.15 (medián -0.00; n=2704, piac=1211)
+         többlet w60    +0.26 ±0.23 (medián +0.00; n=4222, piac=1609)
+         többlet w1800  -0.11 ±0.23 (medián -0.45; n=5278, piac=1917)
+         többlet b60    +1.01 ±0.29 (medián +0.05; n=3602, piac=1448)
+      5m Jupiter saját mozgás: +0.08 ±0.38 (medián -1.00; n=5272, piac=1929)
+         többlet w10    -0.49 ±0.12 (medián -0.00; n=2676, piac=1195)
+         többlet w60    +0.34 ±0.19 (medián +0.00; n=4136, piac=1560)
+         többlet w1800  +1.05 ±0.28 (medián +0.32; n=5099, piac=1818)
+         többlet b60    +0.51 ±0.24 (medián +0.00; n=3543, piac=1415)
+     15m Jupiter saját mozgás: +0.72 ±0.52 (medián -0.50; n=2213, piac=632)
+         többlet w10    -0.11 ±0.10 (medián +0.00; n=603, piac=271)
+         többlet w60    -0.12 ±0.13 (medián +0.00; n=1433, piac=436)
+         többlet w1800  +0.47 ±0.41 (medián +0.21; n=2148, piac=582)
+         többlet b60    -0.11 ±0.19 (medián +0.00; n=1098, piac=383)
+
+  S2, pre (390 mérhető kötés)
+      1m Jupiter saját mozgás: +0.39 ±0.31 (medián +0.00; n=371, piac=220)
+         többlet w10    -0.41 ±0.41 (medián +0.00; n=73, piac=58)
+         többlet w60    +0.71 ±0.59 (medián +0.00; n=157, piac=104)
+         többlet w1800  +0.27 ±0.45 (medián -0.00; n=343, piac=202)
+         többlet b60    +0.45 ±0.53 (medián +0.00; n=113, piac=75)
+      5m Jupiter saját mozgás: -0.32 ±1.44 (medián +0.00; n=294, piac=183)
+         többlet w10    +1.04 ±1.11 (medián +0.00; n=61, piac=51)
+         többlet w60    +0.84 ±0.58 (medián +0.00; n=140, piac=97)
+         többlet w1800  +0.01 ±0.99 (medián -0.00; n=271, piac=170)
+         többlet b60    +1.28 ±0.83 (medián +0.00; n=99, piac=69)
+     15m Jupiter saját mozgás: +0.70 ±1.03 (medián +0.00; n=236, piac=123)
+         többlet w10    -0.03 ±0.08 (medián +0.00; n=34, piac=22)
+         többlet w60    -0.01 ±0.20 (medián +0.00; n=99, piac=53)
+         többlet w1800  -0.81 ±0.76 (medián +0.00; n=222, piac=114)
+         többlet b60    -0.52 ±0.44 (medián +0.00; n=74, piac=40)
+
+  S2, unknown (148 mérhető kötés)
+      1m Jupiter saját mozgás: +0.23 ±0.10 (medián +0.00; n=137, piac=45)
+         többlet w10    +0.23 ±0.26 (medián +0.00; n=12, piac=11)
+         többlet w60    +0.04 ±0.22 (medián +0.00; n=37, piac=18)
+         többlet w1800  +0.14 ±0.15 (medián +0.00; n=106, piac=32)
+         többlet b60    -0.04 ±0.21 (medián -0.00; n=20, piac=14)
+      5m Jupiter saját mozgás: +0.36 ±0.30 (medián +0.00; n=85, piac=27)
+         többlet w10    +0.08 ±0.06 (medián +0.00; n=11, piac=10)
+         többlet w60    +0.19 ±0.35 (medián -0.00; n=30, piac=14)
+         többlet w1800  +0.22 ±0.38 (medián -0.00; n=72, piac=24)
+         többlet b60    -0.17 ±0.13 (medián +0.00; n=18, piac=12)
+     15m Jupiter saját mozgás: +0.67 ±0.47 (medián +0.00; n=85, piac=27)
+         többlet w10    +0.08 ±0.06 (medián +0.00; n=10, piac=10)
+         többlet w60    +0.14 ±0.31 (medián +0.00; n=29, piac=14)
+         többlet w1800  +0.32 ±0.64 (medián +0.00; n=69, piac=21)
+         többlet b60    -0.18 ±0.11 (medián +0.00; n=18, piac=12)
+
+  S1L, live (8727 mérhető kötés)
+      1m Jupiter saját mozgás: -0.18 ±0.12 (medián -0.00; n=8682, piac=5062)
+         többlet w10    -0.16 ±0.08 (medián +0.00; n=3114, piac=2224)
+         többlet w60    +0.35 ±0.12 (medián +0.00; n=6011, piac=3730)
+         többlet w1800  -0.21 ±0.12 (medián -0.30; n=8396, piac=4885)
+         többlet b60    +1.36 ±0.16 (medián +0.00; n=4847, piac=3125)
+      5m Jupiter saját mozgás: -0.26 ±0.23 (medián -0.50; n=8392, piac=4904)
+         többlet w10    -0.04 ±0.07 (medián +0.00; n=3083, piac=2202)
+         többlet w60    +0.42 ±0.10 (medián +0.00; n=5908, piac=3670)
+         többlet w1800  +0.71 ±0.19 (medián +0.04; n=8121, piac=4728)
+         többlet b60    +1.20 ±0.13 (medián +0.00; n=4780, piac=3092)
+     15m Jupiter saját mozgás: +0.28 ±0.30 (medián -0.50; n=5690, piac=3188)
+         többlet w10    +0.00 ±0.05 (medián +0.00; n=1720, piac=1196)
+         többlet w60    -0.08 ±0.07 (medián -0.00; n=3764, piac=2257)
+         többlet w1800  +0.18 ±0.23 (medián +0.33; n=5581, piac=3104)
+         többlet b60    +0.14 ±0.09 (medián -0.00; n=2955, piac=1862)
+
+  S1P, pre (1760 mérhető kötés)
+      1m Jupiter saját mozgás: +0.01 ±0.06 (medián +0.00; n=1681, piac=1097)
+         többlet w10    -0.17 ±0.10 (medián +0.00; n=272, piac=221)
+         többlet w60    -0.20 ±0.10 (medián -0.00; n=721, piac=531)
+         többlet w1800  -0.22 ±0.09 (medián -0.00; n=1521, piac=993)
+         többlet b60    -0.02 ±0.06 (medián +0.00; n=506, piac=386)
+      5m Jupiter saját mozgás: +0.13 ±0.21 (medián +0.00; n=1363, piac=909)
+         többlet w10    -0.06 ±0.11 (medián +0.00; n=263, piac=214)
+         többlet w60    -0.15 ±0.13 (medián -0.00; n=682, piac=501)
+         többlet w1800  -0.25 ±0.21 (medián -0.00; n=1291, piac=868)
+         többlet b60    -0.10 ±0.08 (medián +0.00; n=476, piac=364)
+     15m Jupiter saját mozgás: +0.36 ±0.32 (medián +0.00; n=1382, piac=921)
+         többlet w10    -0.10 ±0.06 (medián +0.00; n=252, piac=202)
+         többlet w60    -0.16 ±0.13 (medián -0.00; n=672, piac=492)
+         többlet w1800  -0.15 ±0.24 (medián -0.00; n=1284, piac=853)
+         többlet b60    -0.01 ±0.08 (medián +0.00; n=476, piac=363)
+
+S1L, tárcánként csoportosított hibahatárral (5m, ±60 mp): +0.42 ±0.20 (medián +0.00; n=5908, piac=112)
+
+KÉSLELTETÉS (S1L): megbízás létrehozása → Polymarket-végrehajtás, és a többlet (5m, ±60 mp)
+  késés: medián 5.0 mp, 10%: 4.0, 90%: 7.0 (n=8247)
+   0–5   mp: többlet +0.50 ±0.25 (medián +0.00; n=1004, piac=888), saját mozgás -0.88 ±0.71 (medián -1.50; n=1300, piac=1152)
+   5–10  mp: többlet +0.41 ±0.11 (medián +0.00; n=4546, piac=2918), saját mozgás -0.11 ±0.26 (medián -0.50; n=6521, piac=3976)
+  10–20  mp: többlet -1.05 ±1.06 (medián -0.00; n=55, piac=50), saját mozgás +0.51 ±1.78 (medián -0.00; n=82, piac=76)
+  20–    mp: többlet +0.83 ±1.38 (medián -0.00; n=33, piac=28), saját mozgás +0.65 ±3.20 (medián -1.00; n=49, piac=39)
+
+MÉRHETŐ vs. NEM MÉRHETŐ
+  S2: 6049 mérhető / 8701 (70%); ebből kontroll nélkül ±60 mp-ben: 1625
+     nem mérhető okok: nincs közép a kötés előtt: 2438, nincs piacadat / nem kétkimenetes: 214
+     medián ár (kötött oldal): mérhető 0.46, nem mérhető 0.49; medián méret: 31 vs 41; kötés/óra a piacon (mérhetők): 386
+  S1L: 8727 mérhető / 10305 (85%); ebből kontroll nélkül ±60 mp-ben: 2700
+     nem mérhető okok: nincs közép a kötés előtt: 1527, lapozási korlát: 51
+     medián ár (kötött oldal): mérhető 0.42, nem mérhető 0.01; medián méret: 81 vs 102; kötés/óra a piacon (mérhetők): 444
+  S1P: 1760 mérhető / 5310 (33%); ebből kontroll nélkül ±60 mp-ben: 1017
+     nem mérhető okok: nincs közép a kötés előtt: 3179, lapozási korlát: 371
+     medián ár (kötött oldal): mérhető 0.52, nem mérhető 0.51; medián méret: 91 vs 83; kötés/óra a piacon (mérhetők): 171
+
+Diagnosztika: 

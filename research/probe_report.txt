@@ -1,0 +1,95 @@
+EDGEHOG – előny-mérés
+Statisztikai becslés nyilvános adatokból, nem minősítés.
+Kötések: 16683 (élő: 11046), tárcák: 132, piacok: 8559
+Esemény körüli élő kötések (YES-ár ≥ 10% mozgás -2..+5 percben): 6190 (56% az élőkből) – az élő pontszámból kimaradnak.
+
+CSOPORTOK – CLV, hibahatár piaconként csoportosítva (zárójelben: ha minden kötés független volna)
+                          kötés  piac            relatív bruttó  abszolút (sz.pont)       relatív nettó
+  toplista, meccs előtti   5025  3055    +0.08% ±0.46% (0.43%)     +0.04 ±0.24       -1.68% ±0.33%  
+  toplista, élő            3958  2635    -2.03% ±0.27% (0.27%)     -0.95 ±0.12       -4.39% ±0.30%  
+  toplista, általános      8983  4983    -0.79% ±0.30% (0.28%)     -0.39 ±0.15       -2.79% ±0.26%  
+  átlag, meccs előtti       311    83    -2.26% ±0.63% (1.11%)     -0.86 ±0.24       -3.70% ±0.70%  
+  átlag, élő                 99    61    -1.81% ±0.79% (0.75%)     -0.92 ±0.39       -4.00% ±0.90%  
+  átlag, általános          410   141    -2.01% ±0.52% (0.65%)     -0.89 ±0.22       -3.87% ±0.59%  
+
+RÖVID ÁRMOZGÁS (relatív bruttó CLV, csoportosított hibahatár; m0 = felár a kötés pillanatában)
+                                            m0                1m                5m               15m             close
+  toplista, élő, esemény nélkül     -1.68% ±0.18%     -1.47% ±0.13%     -2.03% ±0.27%     -2.78% ±1.07%           – (n=0)
+  toplista, élő, esemény körül     -0.81% ±0.68%     -2.50% ±0.63%     -3.00% ±1.86%     -1.33% ±2.06%           – (n=0)
+  toplista, meccs előtt          -1.26% ±0.16%     -0.79% ±0.12%     -0.41% ±0.21%     -0.59% ±0.25%     -0.60% ±0.15%
+  átlag, élő, esemény nélkül     -1.04% ±0.51%     -0.67% ±0.32%     -1.81% ±0.79%     -1.20% ±5.29%           – (n=0)
+  átlag, élő, esemény körül      +9.75% ±2.76%     -0.20% ±1.60%     -3.42% ±4.74%     +2.57% ±6.93%           – (n=0)
+  átlag, meccs előtt             -2.09% ±0.26%     -1.53% ±0.21%     -1.30% ±0.42%     -1.58% ±0.46%     -1.73% ±0.64%
+
+JUPITER DÍJ (kimérve a kötésekből)
+  összesen 50,055 $ díj 2,138,245 $ forgalomra = 2.34% (15985 kötés)
+  díj ≈ k · szerződés · p · (1 − p); k mediánja 0.050 (10%: 0.030, 90%: 0.112); díj nélküli kötés: 0
+  ár 0.0–0.2: díj a forgalom 9.64%-a (3376 kötés)
+  ár 0.2–0.4: díj a forgalom 4.35%-a (3486 kötés)
+  ár 0.4–0.6: díj a forgalom 3.14%-a (4366 kötés)
+  ár 0.6–0.8: díj a forgalom 2.09%-a (3030 kötés)
+  ár 0.8–1.0: díj a forgalom 0.72%-a (1727 kötés)
+
+CÍMKÉK (fő címke = meccs előtti pontszám; élőben csak előzetes jelzés)
+  toplista: nem eldönthető: 83, negatív mért előny: 23, kevés adat: 17, pozitív mért előny: 2
+     meccs előtti  kevés adat: 56, nem eldönthető: 44, negatív mért előny: 23, pozitív mért előny: 2
+     élő           kevés adat: 53, nem eldönthető: 52, negatív mért előny (előzetes): 20
+     általános     nem eldönthető: 56, negatív mért előny: 34, kevés adat: 34, pozitív mért előny: 1
+  átlag: nem eldönthető: 3, negatív mért előny: 2, kevés adat: 2
+     meccs előtti  kevés adat: 5, negatív mért előny: 2
+     élő           kevés adat: 6, negatív mért előny (előzetes): 1
+     általános     kevés adat: 5, negatív mért előny: 2
+  Véletlenül várható téves címke 2 hibahatárnál: kb. 1.6 pozitív és 1.6 negatív a 71 eldönthető tárcából (ha senkinek nincs előnye).
+  Toplista: P&L és meccs előtti CLV korrelációja: +0.02 (116 tárca)
+  Toplista: P&L és élő CLV korrelációja: +0.01 (104 tárca)
+  Toplista: P&L és általános CLV korrelációja: +0.03 (122 tárca)
+
+tárca         P&L $   élő előtt db/piac        előtti CLV sz.pont    nettó           élő CLV   címke
+4Mkqehpi      8,773   86%         41/32     -1.48% ±0.63%   -0.82   -4.71%     -3.18% ±1.58%   negatív mért előny
+ARpzQWFo      3,336   42%       126/125     -0.37% ±0.51%   -0.15   -3.03%     -4.15% ±1.43%   nem eldönthető
+GfqTkp2p      2,217    0%           2/2    +8.89% ±10.37%   +6.86   -3.08%              – ±–   kevés adat
+Gx8GSRgp      2,120   58%         87/46     -0.80% ±0.43%   -0.51   -3.78%     -6.14% ±2.09%   nem eldönthető
+HYgaVTwh      1,893   35%        165/86     -0.66% ±0.15%   -0.55   -1.81%     -0.49% ±0.79%   negatív mért előny
+2uz2Butv      1,655   85%         33/27     -0.23% ±0.90%   -0.12   -2.69%     +0.70% ±1.23%   nem eldönthető
+3n4mhaD9      1,647   79%         30/18     -1.45% ±0.45%   -0.84   -5.06%     -3.00% ±1.63%   negatív mért előny
+3DST8ypA      1,475   83%         41/39     -0.03% ±1.20%   -0.01   -4.55%     -1.53% ±0.98%   nem eldönthető
+HdXzj88j      1,169   91%           5/4     -0.15% ±0.34%   -0.08   -4.18%     -2.61% ±2.36%   nem eldönthető
+9v8abYh5      1,064    0%          20/8   +21.88% ±10.47%  +10.66  +18.12%              – ±–   kevés adat
+H7bNKXEu      1,007   97%           9/7   -23.51% ±24.25%   -2.26  -25.29%    -14.98% ±2.92%   nem eldönthető
+EMxyfg9H        886    7%           9/3   -25.38% ±28.33%   -5.74   -8.75%              – ±–   kevés adat
+6YKLTvLi        755   81%           9/9     -5.68% ±2.37%   -1.02   -8.24%     +0.22% ±1.33%   nem eldönthető
+Cjd3TGeB        716   67%          16/9     +5.90% ±5.17%   +2.93   +2.34%     +1.99% ±1.86%   nem eldönthető
+3QdcQetm        715   39%         85/72     -3.15% ±1.95%   -1.38   -5.94%     -4.50% ±2.53%   nem eldönthető
+5tYTBBhD        683   90%         27/20     -0.19% ±0.12%   -0.17   -0.84%     +0.24% ±0.20%   nem eldönthető
+LfWYN6vo        661   88%         13/13     -0.59% ±0.68%   -0.34   -4.16%     -0.25% ±1.24%   nem eldönthető
+CR6MiV5j        635   37%        143/81     -0.85% ±0.37%   -0.59   -2.46%     -1.23% ±1.12%   negatív mért előny
+HjdYXLQz        557   98%           1/1         -0.79% ±–   -0.50   -4.47%     -0.96% ±1.56%   nem eldönthető
+GyzBWrez        556    0%        225/11     +0.02% ±0.26%   +0.01   -0.37%              – ±–   nem eldönthető
+1koh3PBE        544   92%         20/20     -0.37% ±3.08%   -0.27   -2.73%     -2.94% ±0.59%   nem eldönthető
+3yxkzw5R        510   17%           5/4   +14.12% ±38.91%   +5.61  +71.98%         -2.27% ±–   nem eldönthető
+8i3Z12xK        459   74%         71/65     +2.58% ±1.23%   +1.36   -0.05%     -1.03% ±0.82%   pozitív mért előny
+3AqkjUZG        408   78%         11/11     -0.38% ±0.93%   -0.23   -3.49%     -2.35% ±1.66%   nem eldönthető
+Dub84fdk        347   68%         10/10   +20.72% ±26.24%   +6.99  +17.64%     -2.86% ±0.81%   nem eldönthető
+9yyu6Mj9        330   35%         22/13     -1.87% ±0.73%   -1.00   -5.03%     -4.12% ±0.92%   negatív mért előny
+9b8wVfJm        295   36%         58/49     -0.49% ±0.41%   -0.25   -2.80%     -5.01% ±2.53%   nem eldönthető
+77MgDE5p        288   97%           8/5     -0.92% ±1.56%   -0.42   -3.18%     -1.95% ±3.09%   nem eldönthető
+14A8YYqy        273   50%           1/1         -1.02% ±–   -0.50   -5.33%              – ±–   kevés adat
+5crFguam        266   82%         16/15     -2.79% ±0.76%   -1.07   -5.65%     -7.08% ±1.82%   negatív mért előny
+4hghWRAM        256   84%           7/7     -8.38% ±4.18%   -5.05  -11.61%     -0.82% ±0.78%   nem eldönthető
+Bvns4rgJ        250   79%         56/41     -2.84% ±0.63%   -1.02   -5.99%     -7.19% ±1.87%   negatív mért előny
+9TFDxgz7        244   51%         90/81     -1.33% ±0.71%   -0.68   -3.31%     -0.70% ±0.48%   nem eldönthető
+GA1N5pac        236    0%           4/2     +3.98% ±4.54%   +3.39   +3.02%              – ±–   kevés adat
+G1sduFUZ        234   62%           3/1        +12.93% ±–   +2.86   +7.48%         -1.33% ±–   nem eldönthető
+31WZ9xRm        229   73%         62/55     -0.46% ±0.41%   -0.34   -1.74%     -2.17% ±0.58%   nem eldönthető
+GQMsbcaR        225   72%           8/8     -1.54% ±0.61%   -0.55   -5.22%     +3.07% ±4.49%   nem eldönthető
+D8GrT1G8        223   42%         75/54     -3.45% ±2.38%   -1.60   -5.56%     -2.00% ±1.23%   nem eldönthető
+CeEzkUtr        202   98%           5/3     -0.92% ±0.26%   -0.56   -2.43%     -2.32% ±0.79%   nem eldönthető
+8d3Y1XVX        187   35%       171/146     -1.39% ±0.88%   -0.85   -3.80%     -3.74% ±1.85%   nem eldönthető
+
+Pozitív mért előny (meccs előtti):
+  8i3Z12xKDxnk6Mtit4MZofaMdLqoazUwVsx3PHw6oVEs [toplista] CLV +2.58% ± 1.23% (71 kötés, 65 piac), nettó -0.05%, P&L 459 $
+  tWC4cdMMeoMUnkboakPDEreK5cwyt6XBeyeGBrcgFRQ [toplista] CLV +9.39% ± 2.81% (211 kötés, 66 piac), nettó +7.22%, P&L 172 $
+
+MÓDSZER: CLV = q/p − 1 a kötött oldalra (eladás = a másik oldal vétele 1 − p áron), összegsúlyozva; abszolút = q − p szerződéssúlyozva. Bruttó: a Jupiter kötési ára (díj nélkül); nettó: p + díj/szerződés. Hibahatár: cluster-robust SE piaconként. Címke: |CLV| > 2 hibahatár, legalább 10 kötés és 10 piac. Élő referencia: ár 5 perc múlva, esemény körüli kötések nélkül; élőben nincs végleges ítélet.
+Részletek: output\wallets.csv
+KESZ 

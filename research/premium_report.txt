@@ -1,0 +1,54 @@
+Minta: 600 kötés (300 élő) a 15094-ből
+  Polymarket API: v2; példa kötés: {"price": 0.999, "size": 1.49, "timestamp": 1789321105, "side": "SELL", "asset": "14843866012101334452123753931850807557794033816158628250660687285641032663557", "transactionHash": "0x674c1f2c433b6755
+  50/600, eddig párosítva: 47
+  100/600, eddig párosítva: 96
+  150/600, eddig párosítva: 146
+  200/600, eddig párosítva: 192
+  250/600, eddig párosítva: 240
+  300/600, eddig párosítva: 288
+  350/600, eddig párosítva: 329
+  400/600, eddig párosítva: 370
+  450/600, eddig párosítva: 411
+  500/600, eddig párosítva: 456
+  550/600, eddig párosítva: 497
+  600/600, eddig párosítva: 537
+Diagnosztika: v2: ok: 600; v1: HTTP 410 '{"error":"Data API v1 has been retired","migration":"https://data-api.polymarket.com/v2/","docs":"https://docs.polymarke': 1
+EDGEHOG – felár a kötés pillanatában (pozitív = a kereskedő ennyivel drágábban kötött, százalékpont)
+Vizsgált kötés: 600, Polymarket-párt találtam: 537
+Leggyakoribb Polymarket-tárcák a párokban (a Jupiter továbbító tárcái): 0x5b6331e7… (529), 0x5ecb8d03… (1), 0xc785252b… (1), 0x1b414826… (1), 0x204f72f3… (1)
+
+ÖSSZES (600 kötés)
+  1. Jupiter ára vs. saját Polymarket-kötése   átlag +0.00 ±0.03 sz.pont, medián +0.00, n=537
+  2. Polymarket-kötés vs. közép (spread)       átlag +1.00 ±0.15 sz.pont, medián +0.50, n=502
+     Jupiter ára vs. közép (1+2 együtt)        átlag +1.06 ±0.15 sz.pont, medián +0.50, n=513
+     Jupiter ára vs. előző Polymarket-kötés    átlag +1.01 ±0.14 sz.pont, medián +0.48, n=531
+     Jupiter ára vs. perces ár (a mostani m0)  átlag +0.25 ±0.32 sz.pont, medián +0.50, n=590
+  3. perces ár (m0) vs. közép (mérési hiba)    átlag +0.91 ±0.33 sz.pont, medián +0.00, n=505
+     fél spread (utolsó vétel−eladás)/2        átlag +0.94 ±0.11 sz.pont, medián +0.50, n=513
+     + Jupiter-díj szerződésenként             átlag +1.35 ±0.03 sz.pont, medián +1.21, n=586
+     Jupiter ára vs. közép, relatív (CLV-egység) átlag +2.57 ±0.51 %, medián +1.16, n=513
+
+MECCS ELŐTT (300 kötés)
+  1. Jupiter ára vs. saját Polymarket-kötése   átlag +0.00 ±0.00 sz.pont, medián +0.00, n=249
+  2. Polymarket-kötés vs. közép (spread)       átlag +0.95 ±0.16 sz.pont, medián +0.50, n=219
+     Jupiter ára vs. közép (1+2 együtt)        átlag +0.94 ±0.16 sz.pont, medián +0.50, n=223
+     Jupiter ára vs. előző Polymarket-kötés    átlag +0.73 ±0.16 sz.pont, medián +0.00, n=238
+     Jupiter ára vs. perces ár (a mostani m0)  átlag +0.89 ±0.09 sz.pont, medián +0.50, n=295
+  3. perces ár (m0) vs. közép (mérési hiba)    átlag +0.03 ±0.15 sz.pont, medián +0.00, n=219
+     fél spread (utolsó vétel−eladás)/2        átlag +0.98 ±0.15 sz.pont, medián +0.50, n=223
+     + Jupiter-díj szerződésenként             átlag +1.26 ±0.04 sz.pont, medián +1.17, n=291
+     Jupiter ára vs. közép, relatív (CLV-egység) átlag +2.36 ±0.34 %, medián +1.09, n=223
+
+ÉLŐ (300 kötés)
+  1. Jupiter ára vs. saját Polymarket-kötése   átlag +0.00 ±0.06 sz.pont, medián +0.00, n=288
+  2. Polymarket-kötés vs. közép (spread)       átlag +1.04 ±0.23 sz.pont, medián +0.50, n=283
+     Jupiter ára vs. közép (1+2 együtt)        átlag +1.15 ±0.24 sz.pont, medián +0.50, n=290
+     Jupiter ára vs. előző Polymarket-kötés    átlag +1.25 ±0.22 sz.pont, medián +1.00, n=293
+     Jupiter ára vs. perces ár (a mostani m0)  átlag -0.40 ±0.62 sz.pont, medián +0.50, n=295
+  3. perces ár (m0) vs. közép (mérési hiba)    átlag +1.59 ±0.56 sz.pont, medián +0.00, n=286
+     fél spread (utolsó vétel−eladás)/2        átlag +0.91 ±0.15 sz.pont, medián +0.50, n=290
+     + Jupiter-díj szerződésenként             átlag +1.43 ±0.04 sz.pont, medián +1.24, n=295
+     Jupiter ára vs. közép, relatív (CLV-egység) átlag +2.74 ±0.86 %, medián +1.33, n=290
+
+Közép = a kötés előtti utolsó vételi és eladási taker-kötés átlaga (5 percen belül) – közelítés.
+KESZ 
