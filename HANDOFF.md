@@ -217,3 +217,15 @@ Részletes specifikáció: ChatGPT „végleges termékspecifikáció” (a chat
 ### ELSŐ 48 ÓRA: két kockázatmentesítő teszt (spike) építés előtt
 1. pm-AMM devneten: SDK telepítés, pool state lekérés, egy deposit + withdraw tesztkulccsal.
 2. Jupiter: /orderbook + POST /orders aláíratlan tx felépítése (aláírás nélkül), a válasz ár/díj mezői.
+
+## REPÓ ÉS FEJLESZTŐI KÖRNYEZET (2026-11-05)
+- Kód: github.com/Alpha007-ai-dev/EDGEHOG (privát). A nyers adat (`data/`) és az `output/` nincs a repóban; a mérési
+  eredmények a `research/` mappában vannak. `of_quick.py` és `footprint_plot.py` gyors vázlatok (beégetett útvonalak).
+- Jupiter-kulcs: `JUPITER_API_KEY` környezeti változó (a felhős környezet beállításainál), vagy helyi `.jupkey`. Cserélni kell
+  beadás előtt (kétszer szerepelt chatben).
+- Felhős környezet hálózata (claude.ai/code → felhő ikon → fogaskerék → Network access: Custom + csomagkezelők):
+  api.jup.ag, gamma-api.polymarket.com, clob.polymarket.com, data-api.polymarket.com, api.elections.kalshi.com,
+  api.devnet.solana.com. Csak új munkamenetre érvényes.
+- Az otthoni gépen (C:\dev\edgehog) továbbra is fut a `collect.py` ütemezett feladat („EDGEHOG gyujto”, 2 percenként).
+- KÖVETKEZŐ LÉPÉS új munkamenetben: hozzáférés-ellenőrzés, majd a két spike (pm-AMM devnet deposit/withdraw;
+  Jupiter /orderbook + POST /orders aláíratlan tx).
