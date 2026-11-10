@@ -249,3 +249,15 @@ Részletes specifikáció: ChatGPT „végleges termékspecifikáció” (a chat
    a díj összevetése a mért táblával.
 3. pm-AMM devnet spike: SDK, pool state, deposit + withdraw tesztkulccsal; a szimulátor számainak összevetése az SDK-val.
 4. Ha mindkét spike működik: Next.js-váz (specifikáció szerinti stack), a prototípus nézetei valódi adatra kötve.
+
+## 2026-11-10 – gyűjtő-állapot, 300 véletlen tárca költsége, a Jupiter díjváltozása
+- Gyűjtő (nov. 4–10): 4 263 futás, 0 hézag, 6 API-hiba, egy 22 perces szünet; 15 900 kötés, 861 tárca.
+- `cost_sample.py` (run_cost.bat): 300 véletlen tárca (seed 11) a gyűjtő tárcáiból, nov. 1 utáni Polymarket-kötések.
+  **5 066 mérhető kötés, $418 496 középáron, $20 189 költség = 4,82% ± 0,47% / belépés**; tárcamedián 5,22% (10–90%: 1,2–8,8%);
+  a díj a költség 77%-a; toplistás tárcák 6,50%, többiek 3,86%; 0,2–0,4 árú kontraktusok 10,3%. → `research/cost_random_sample.md`
+- **A Jupiter díja 2026-10-27-én megváltozott:** okt. 26-ig minden kötésen pontosan 0,05·p·(1−p)/kontraktus; azóta
+  ≈ 0,0181·p + 0,052·p·(1−p) (illesztés 6 745 kötésen) – kb. 2% builder fee jött rá. Toplista: 3,96% → 6,11% / belépés.
+  A költségmotor („measured”) és a prototípus már az új képlettel számol; a régi tábla „measured-legacy”.
+- **Helyszín-teszt újraszámolva az új díjjal:** likvid meccseken a Kalshi olcsóbb (67–80%, 0,3–0,5 sz.pont), ritkás
+  meccseken a Polymarket+Jupiter (2,6–9,6 sz.pont). A helyes helyszín piaconként más → a költség-előnézetben mindkettőt mutatni.
+- Az időbeli ellenőrzés (8. pont) nem futott; a skill-pontszám nincs a termékben, alacsony prioritás.

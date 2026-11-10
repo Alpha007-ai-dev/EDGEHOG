@@ -130,7 +130,7 @@ footer{color:var(--muted);font-size:13px;padding-block:20px;border-top:1px solid
 
 <section id="v-report" data-view="report" hidden>
   <h1>Execution report</h1>
-  <p class="lede">Every fill compared with the Polymarket mid just before it. The cost is one entry versus the mid (spread and slippage together, plus Jupiter's fee), not a round trip.</p>
+  <p class="lede">Every fill compared with the Polymarket mid just before it (4 Nov snapshot, mostly before Jupiter’s 27 Oct fee change; current cost on a random sample: 4.82%). The cost is one entry versus the mid (spread and slippage together, plus Jupiter's fee), not a round trip.</p>
   <div class="row" style="margin-bottom:12px">
     <button class="seg" id="r-all" aria-pressed="true">102 measured wallets</button>
     <button class="seg" id="r-a" aria-pressed="false">Wallet A · leaderboard #1</button>
@@ -189,13 +189,14 @@ footer{color:var(--muted);font-size:13px;padding-block:20px;border-top:1px solid
 
 <section id="v-research" data-view="research" hidden>
   <h1>We tried to find alpha. We couldn't prove it.</h1>
-  <p class="lede">Two days, 16,683 Jupiter Predict fills, 8,701 Jupiter-routed Polymarket trades, three tests with the protocol written down before the run. What held up is the cost.</p>
+  <p class="lede">16,683 leaderboard fills, 5,066 fills of 300 random traders, 8,701 Jupiter-routed Polymarket trades, three tests with the protocol written down before the run. What held up is the cost.</p>
   <div class="panel findings">
-    <div class="find"><div class="verdict yes">Holds</div><div><b>One entry costs ~4.6% vs the mid.</b> $66,676 on $1.44M across 102 wallets; 4.9% live, 3.5% pre-match, 11.7% on contracts under 20¢. About half spread, half Jupiter fee.</div></div>
+    <div class="find"><div class="verdict yes">Holds</div><div><b>One entry costs ~4.8% vs the mid.</b> 300 random wallets, 5,066 fills since 1 Nov: $20,189 on $418,496, 4.82% ± 0.47%; median wallet 5.2%. Leaderboard wallets pay 6.5%. About three quarters of it is the Jupiter fee.</div></div>
+    <div class="find"><div class="verdict yes">New</div><div><b>Jupiter's fee doubled on 27 Oct 2026.</b> Before: exactly 0.05 · p · (1−p) per contract. Since: ≈ 2% of value on top. Leaderboard cost per entry went from 3.96% to 6.11%.</div></div>
     <div class="find"><div class="verdict yes">Holds</div><div><b>Jupiter adds no price markup.</b> 537 of 600 fills matched to their own Polymarket execution at the same price, median 2 s apart. Order to execution: median 5 s.</div></div>
     <div class="find"><div class="verdict no">Rejected</div><div><b>Leaderboard P&amp;L shows skill.</b> P&amp;L vs measured edge: correlation ≈ 0.02. 2 of ~71 decidable wallets look positive, about what chance gives.</div></div>
     <div class="find"><div class="verdict no">Rejected</div><div><b>Jupiter flow is less informed.</b> Pre-registered test, 4,136 live trades: +0.34 ± 0.19 pp, inconclusive; the sign flips with the control window.</div></div>
-    <div class="find"><div class="verdict no">Rejected</div><div><b>Cheapest-venue routing pays.</b> Polymarket vs Kalshi on 44 games: 0.5 pp median gap on liquid markets, Jupiter cheaper ~80% of the time, no arbitrage after fees.</div></div>
+    <div class="find"><div class="verdict yes">Revised</div><div><b>The cheaper venue depends on the market.</b> With the new fee, Kalshi is cheaper on liquid games (67–80% of cases, 0.3–0.5 pp); Polymarket via Jupiter on thin ones (2.6–9.6 pp). No arbitrage after fees.</div></div>
     <div class="find"><div class="verdict no">Rejected</div><div><b>Order flow predicts price.</b> 169 live markets: absorption → 15 min −0.28 ± 0.69 pp (274 vs 254). Delta continuation +0.21 pp / 5 min, below the cost of a trade.</div></div>
   </div>
   <p class="note" style="margin-top:12px">Statistical estimates from public data; error bars clustered by market. Not investment advice, not a rating of any person.</p>

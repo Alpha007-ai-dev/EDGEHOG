@@ -12,6 +12,18 @@ Polymarket and Kalshi public APIs). Not investment advice and not a rating of an
 - Four hypotheses were tested; three of them with a protocol written down **before** the run (in `HANDOFF.md`).
 
 ## The headline: execution cost
+
+**Update 10 Nov 2026 — random sample, current fee regime.** 300 random wallets from 861 seen in Jupiter's
+trade feed (4–10 Nov), their Polymarket-sourced fills since 1 Nov: **5,066 measured fills, $418,496 at mid,
+$20,189 cost = 4.82 % ± 0.47 % per entry** (error clustered by market). Median wallet **5.22 %** (10th–90th
+percentile 1.2 %–8.8 %). The Jupiter fee is **77 %** of it. Leaderboard wallets pay 6.50 %, others 3.86 %
+(they cross less spread). Contracts priced 0.2–0.4 cost 10.3 % per entry. Full table: `cost_random_sample.md`.
+
+**Jupiter's fee doubled on 27 Oct 2026.** Until 26 Oct every fill paid exactly 0.05 · p · (1 − p) per contract;
+since 27 Oct ≈ 0.018 · p + 0.052 · p · (1 − p) (≈ 2 % of trade value added). On the leaderboard sample the cost of
+an entry went from **3.96 % to 6.11 %** (fee 1.98 % → 3.99 % of value). The table below is the 4 Nov snapshot and
+mixes both regimes.
+
 | | fills | value at mid | spread + slippage | Jupiter fee | **total** | % of value |
 |---|---:|---:|---:|---:|---:|---:|
 | all measured fills | 10,487 | $1,443,281 | $29,132 | $37,544 | **$66,676** | **4.62 %** |
@@ -32,14 +44,15 @@ Polymarket and Kalshi public APIs). Not investment advice and not a rating of an
 |---|---|---|
 | Leaderboard P&L shows skill | CLV per wallet, market-clustered errors | P&L vs CLV correlation **≈ 0.02**. 2 of ~71 decidable wallets look positive, ≈ 1.6 expected by chance |
 | Jupiter flow is less informed than Polymarket's own flow | Pre-registered, 4,136 live trades, matched controls | **+0.34 ± 0.19 pp** at 5 min → inconclusive; the sign flips with the control window. Jupiter flow's own 5-min markout ≈ 0 |
-| Cheapest-venue routing (Polymarket vs Kalshi) | 44 matched games, $50–$2,000 | Liquid markets: median difference **0.5 pp** (≈ the fee gap); thin markets: big gaps but ~85 % one way (Jupiter cheaper). **No arbitrage after fees** |
+| Cheapest-venue routing (Polymarket vs Kalshi) | 44 matched games, $50–$2,000 | **Revised with the new fee:** liquid markets — Kalshi cheaper 67–80 % of the time, by 0.3–0.5 pp; thin markets — Polymarket/Jupiter cheaper ~70–80 %, by 2.6–9.6 pp. The right venue depends on the market. **No arbitrage after fees** |
 | Order flow predicts price (absorption, pre-event signals) | Pre-registered, 169 live markets, 21k one-minute bars | Absorption → 15 min: **−0.28 ± 0.69 pp** (274 vs 254, a coin flip). Delta continuation +0.21 ± 0.06 pp / 5 min — real but far below the cost of a trade. Score jumps are not visible in the flow beforehand |
 
 ## So what
 - The leaderboard measures luck over short windows; execution cost is a sure, measurable drag.
 - Cheap longshots are the most expensive place to trade (fee + spread ≈ 12 % per entry).
 - Live trading costs more than pre-match.
-- Jupiter is usually the cheaper Solana route to the same game than Kalshi-based apps.
+- The cheaper venue depends on liquidity: Kalshi-based apps on liquid games, Jupiter (Polymarket) on thin ones.
+- Since 27 Oct the Jupiter fee is the largest single cost (about three quarters of it for typical traders).
 
 **EDGEHOG** turns this into a tool: a pre-trade cost preview in dollars, a post-trade execution report
 and replay per wallet, and an LP desk for the pm-AMM.
