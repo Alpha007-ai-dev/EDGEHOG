@@ -16,20 +16,32 @@ export type Book = { bids: Level[]; asks: Level[] };   // YES token
 export type Outcome = "YES" | "NO";
 export type Action = "BUY" | "SELL";
 
-/** Measured Jupiter fee per contract ($) by price bucket (median of 15 985 fills, 2026-11-04). */
+/**
+ * Jupiter fee per contract, measured from real fills.
+ * Since 2026-10-27: fee ≈ 0.0181·p + 0.0520·p·(1−p)  (least-squares fit on 6 745 fills, 27 Oct – 10 Nov;
+ * consistent with Jupiter's documented ~2 % builder fee on trade value plus a p·(1−p) platform part).
+ * Until 2026-10-26: exactly 0.05·p·(1−p) on every fill. Fees vary per market; prefer the exact quote.
+ */
+export const FEE_SINCE_2026_10_27 = (p: number) => 0.0181 * p + 0.052 * p * (1 - p);
+export const FEE_UNTIL_2026_10_26 = (p: number) => 0.05 * p * (1 - p);
+
+/** Old all-period median table (mostly pre-27-Oct fills). Kept for reproducing the 2026-11-04 research. */
 export const MEASURED_FEE_TABLE: number[] = [
   0.0009, 0.0037, 0.0060, 0.0077, 0.0091, 0.0105, 0.0112, 0.0119, 0.0123, 0.0125,
   0.0125, 0.0123, 0.0119, 0.0112, 0.0103, 0.0091, 0.0077, 0.0060, 0.0045, 0.0024,
 ];
 
 export type FeeModel =
-  | { kind: "measured" }                                    // our own median per 0.05 price bucket
+  | { kind: "measured" }                                    // current measured formula (since 2026-10-27)
+  | { kind: "measured-legacy" }                             // pre-27-Oct era (all-period median table)
   | { kind: "docs"; builderRate?: number; platformFeePerContract?: number } // 2 % builder + platform fee
   | { kind: "quote"; feeUsd: number };                     // exact fee from a Jupiter /orders quote
 
 export function feePerContract(price: number, model: FeeModel, contracts = 1): number {
   switch (model.kind) {
     case "measured":
+      return FEE_SINCE_2026_10_27(price);
+    case "measured-legacy":
       return MEASURED_FEE_TABLE[Math.min(19, Math.max(0, Math.floor(price * 20)))];
     case "docs":
       return (model.builderRate ?? 0.02) * price + (model.platformFeePerContract ?? 0);

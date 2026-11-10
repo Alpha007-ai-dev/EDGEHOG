@@ -40,9 +40,10 @@ test("sell: costs are positive when selling below mid", () => {
   assert.ok(e.totalUsd > 0);
 });
 
-test("measured fee table peaks near 0.50", () => {
-  near(feePerContract(0.5, { kind: "measured" }), 0.0125);
-  assert.ok(feePerContract(0.05, { kind: "measured" }) < feePerContract(0.5, { kind: "measured" }));
+test("measured fee: current formula vs legacy table", () => {
+  near(feePerContract(0.5, { kind: "measured" }), 0.0181 * 0.5 + 0.052 * 0.25);
+  near(feePerContract(0.5, { kind: "measured-legacy" }), 0.0125);
+  assert.ok(feePerContract(0.9, { kind: "measured" }) > 4 * feePerContract(0.9, { kind: "measured-legacy" }));
 });
 
 test("ladder returns three sizes and cost grows with size", () => {
