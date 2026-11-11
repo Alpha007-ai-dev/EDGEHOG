@@ -1,0 +1,13 @@
+{
+  "name": "edgehog-devnet-lp",
+  "private": true,
+  "description": "EDGEHOG LP Desk – devnet end-to-end on the PREDICT pm-AMM",
+  "main": "lp_devnet.cjs",
+  "scripts": { "start": "node lp_devnet.cjs" },
+  "dependencies": {
+    "@anchor-lang/core": "^1.0.0",
+    "@pm-amm/sdk": "^0.2.0",
+    "@solana/spl-token": "^0.4.0",
+    "@solana/web3.js": "^1.98.0"
+  }
+}

@@ -261,3 +261,24 @@ Részletes specifikáció: ChatGPT „végleges termékspecifikáció” (a chat
 - **Helyszín-teszt újraszámolva az új díjjal:** likvid meccseken a Kalshi olcsóbb (67–80%, 0,3–0,5 sz.pont), ritkás
   meccseken a Polymarket+Jupiter (2,6–9,6 sz.pont). A helyes helyszín piaconként más → a költség-előnézetben mindkettőt mutatni.
 - Az időbeli ellenőrzés (8. pont) nem futott; a skill-pontszám nincs a termékben, alacsony prioritás.
+
+## 2026-11-11 – élő könyv és devnet LP, végponttól végpontig
+- **`live_book.py` (run_live.bat):** a gyűjtő legfrissebb piacain a Jupiter /orderbook-ot összeveti a Polymarket CLOB-bal
+  (Polymarket–Jupiter–Polymarket lekérés közvetlenül egymás után). A Jupiter-könyv Kalshi-formátumú:
+  `yes_dollars` = YES vételi ajánlatok, `no_dollars` = NO vételi ajánlatok (YES eladási oldal = 1 − ár), `yes`/`no` ugyanez centben.
+  **Eredmény: 10 piacon 558 szintből 555 árban és méretben azonos** (a 3 eltérés az időkülönbség) → a Jupiter-könyv a Polymarket-könyv
+  tükre, felár nélkül; élő adattal is igazolva. Lejárt kripto-up/down piacokon a /orderbook 404. → `research/live/live_book_20261111.txt`
+  A Jupiter /orderbook így közvetlenül használható a költség-előnézethez (nem kell külön Polymarket-hívás).
+- **`app/devnet/lp_devnet.cjs` (run_devnet.bat):** a PREDICT pm-AMM devneten (program GV1F…, mUSDC 3WQ8…), eldobható tárcával
+  (`devnet-wallet.json`, git-ignored). Minden lépés valódi devnet-tranzakció, Solscan-linkekkel → `research/live/devnet_lp_20261111.json`
+  - faucet: 1 000 mUSDC + 0,2 SOL; piac létrehozása 50 mUSDC-vel (2 óra, 50%);
+  - második LP-befizetés 100 mUSDC: részesedés-arány 2,0003 vs SDK-előrejelzés 2,0011 (0,04%);
+  - 3 kötés (20 / 10 / 15 mUSDC) egy 150 mUSDC-s poolban: költség a középhez 6,1% / 4,5% / 4,9% (ebből 2% díj);
+    a kapott token ~0,5%-kal kevesebb, mint az SDK `estimateSwapOutput` becslése (98%-os bemenettel) → kalibrálni kell;
+  - 95 mp után accrue + claim: 1,03 YES + 1,34 NO felszabadult (≈ $1,17), az elméleti LVR-kompenzáció ugyanerre ≈ $0,98;
+  - fél részesedés kivétele: 63,9 YES + 86,0 NO (a pool-tartalék fele), pár-visszaváltás → mUSDC.
+- **Fontos a termékhez:** a PREDICT pm-AMM-en a 2%-os swap díj fele a DAO-é, fele a piac létrehozójáé – **az LP nem kap díjat**.
+  Az LP hozama csak a felszabaduló likviditás (dC_t). Az LP-szimulátor díja ezért PREDICT poolokra 0 (a prototípusban jelezve).
+- Megjegyzés: a bridge néha a régi fájlt futtatja ugyanazon a néven → új fájlnévvel kell feltölteni (live_check.py → live_book.py).
+- Következő: valódi Jupiter-kötés a felhasználó saját tárcájával (POST /orders → aláíratlan tx → a felhasználó írja alá), majd ennek
+  végrehajtási riportja; a devnetes LP-folyamat bekötése a webes LP Deskbe (burner wallet).

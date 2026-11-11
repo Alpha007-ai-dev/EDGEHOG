@@ -171,6 +171,7 @@ footer{color:var(--muted);font-size:13px;padding-block:20px;border-top:1px solid
       <div class="row" style="margin-top:10px">
         <label class="label" style="width:80px" for="fee">Swap fee</label><input id="fee" type="range" min="0" max="100" step="5" value="0" style="flex:1;min-width:140px"><span class="mono" id="feelbl"></span>
       </div>
+      <p class="note" style="margin:6px 0 0">On the PREDICT pm-AMM the 2% swap fee goes to the protocol and the market creator, not to LPs, so keep this at 0 for PREDICT pools. Verified on devnet (11 Nov).</p>
       <div class="row" style="margin-top:10px">
         <span class="label" style="width:80px">Model</span>
         <button class="seg" id="m-dyn" aria-pressed="true">Dynamic</button><button class="seg" id="m-sta" aria-pressed="false">Static</button>

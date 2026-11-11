@@ -1,0 +1,203 @@
+{
+ "started": "2026-11-11T17:57:57.554Z",
+ "rpc": "https://api.devnet.solana.com",
+ "steps": [
+  {
+   "name": "1. funding",
+   "at": "2026-11-11T17:58:01.169Z",
+   "faucet": {
+    "status": 200,
+    "ok": true,
+    "signature": "4ZeFX41XXCzAKET71w3YeBkUTA4z72RTD89LZrPkSWWbqzRKoEyndnaCgPmFgL4VysMrrtdf4wsRGft3PH8aZmiS",
+    "amount": 1000,
+    "sol": 0.2
+   },
+   "balances": {
+    "sol": 0.2,
+    "usdc": 1000
+   }
+  },
+  {
+   "name": "2. market created + first LP deposit (50 mUSDC)",
+   "at": "2026-11-11T17:58:03.027Z",
+   "market": {
+    "pda": "HxHNS4HvrmAwpwXA5xdC3nPGYz7BQUXJ2dSDVxJuijPc",
+    "id": "148362115688642",
+    "app": "https://pm-amm-devnet.vercel.app/market/148362115688642"
+   },
+   "tx": "https://solscan.io/tx/3SMtoxv8KcNrZBZc6ZrqAPvY7JHXJteuG2sa9iJNnTWU2gMPdDg5rbeNmEaq54qz1He3srg6kDFXJLWWejEJyd15?cluster=devnet",
+   "state": {
+    "price": 0.5000000010002525,
+    "x": 49999999.842918396,
+    "y": 50000000,
+    "lZero": 1476429.822450691,
+    "lEff": 125270524.47984795,
+    "remainingSecs": 7199,
+    "poolValueMicro": 49975708.70307404,
+    "totalShares": "14073748835532800000000",
+    "expectedDailyLvrMicro": 299895904.4273925
+   },
+   "position": {
+    "shares": "14073748835532800000000",
+    "collateralDeposited": 50,
+    "excessYes": 0,
+    "excessNo": 0
+   },
+   "balances": {
+    "sol": 0.16461784,
+    "usdc": 950,
+    "yes": 0,
+    "no": 0
+   }
+  },
+  {
+   "name": "3. second LP deposit (100 mUSDC)",
+   "at": "2026-11-11T17:58:06.559Z",
+   "tx": "https://solscan.io/tx/4NZ7ssEbDPctuT4czQYxmDWdUn3Yx1FRu4X6tRZ77k3KQAE15JQXnhP5PyhYyTnFRFkS5sbZ6YyYCo5nazpyCoUa?cluster=devnet",
+   "predictedNewSharesRatio": 2.001111108051704,
+   "actualNewSharesRatio": 2.0002776042764254,
+   "position": {
+    "shares": "42225153439460477391231",
+    "collateralDeposited": 150,
+    "excessYes": 0,
+    "excessNo": 0
+   },
+   "state": {
+    "price": 0.5000000010003249,
+    "x": 149993060.38503167,
+    "y": 149993060.85625738,
+    "lZero": 4429699.330584627,
+    "lEff": 375741918.2986544,
+    "remainingSecs": 7195,
+    "poolValueMicro": 149899337.728474,
+    "totalShares": "42225153439460477391231",
+    "expectedDailyLvrMicro": 900021040.9826374
+   },
+   "balances": {
+    "sol": 0.16461284,
+    "usdc": 850,
+    "yes": 0,
+    "no": 0
+   }
+  },
+  {
+   "name": "4. trades",
+   "at": "2026-11-11T17:58:23.290Z",
+   "trades": [
+    {
+     "tx": "https://solscan.io/tx/4Epz8hour3BY6ohdBvhDVc85Aj4MWPygzzgmjypiWrUcHTsJKYtZjpKrh7QrgVh3nW1v7dmfWeoSMpQihMiD4YX1?cluster=devnet",
+     "direction": "usdcToYes",
+     "usdcIn": 20,
+     "quotedTokens": 37.88552318880002,
+     "receivedTokens": 37.692986,
+     "midBefore": 0.5000000010003599,
+     "avgPrice": 0.5306026962151527,
+     "priceAfterYes": 0.5399727770770859,
+     "costVsMidUsdc": 1.1535069622934502,
+     "costVsMidPct": 6.120539030713067,
+     "feeUsdc": 0.4,
+     "note": "half of the fee goes to the creator (= this wallet here), half to the protocol DAO"
+    },
+    {
+     "tx": "https://solscan.io/tx/29e5nkmgAinFynXu5m78V2uv3ZF2uf9TWAjyfQ2dEsTCauUqewoYG1xa4g33PWpCiGfSngV7ceqnQLUfW9sTABbb?cluster=devnet",
+     "direction": "usdcToNo",
+     "usdcIn": 10,
+     "quotedTokens": 20.998540180236937,
+     "receivedTokens": 20.804105,
+     "midBefore": 0.4600272229229141,
+     "avgPrice": 0.48067436690979976,
+     "priceAfterYes": 0.5179255299867661,
+     "costVsMidUsdc": 0.429545351453288,
+     "costVsMidPct": 4.488243946890392,
+     "feeUsdc": 0.2,
+     "note": "half of the fee goes to the creator (= this wallet here), half to the protocol DAO"
+    },
+    {
+     "tx": "https://solscan.io/tx/4HaAKQSdQdvJcbwQ1WaitL8GpFkJY9xfG2AtDkCgLX2tZ9DVvsEkoNrSFcC1rJQPD8g5XB1bTgxSyAvMSFPJ9N11?cluster=devnet",
+     "direction": "usdcToYes",
+     "usdcIn": 15,
+     "quotedTokens": 27.77401288909395,
+     "receivedTokens": 27.60360500000001,
+     "midBefore": 0.517926776874956,
+     "avgPrice": 0.5434072832153625,
+     "priceAfterYes": 0.5471663150387935,
+     "costVsMidUsdc": 0.7033538322205751,
+     "costVsMidPct": 4.919712105666675,
+     "feeUsdc": 0.3,
+     "note": "half of the fee goes to the creator (= this wallet here), half to the protocol DAO"
+    }
+   ],
+   "state": {
+    "price": 0.5471663150387935,
+    "x": 128638403.68358906,
+    "y": 173113100.9599387,
+    "lZero": 4429699.330584627,
+    "lEff": 375297763.3187323,
+    "remainingSecs": 7178,
+    "poolValueMicro": 148674517.641801,
+    "totalShares": "42225153439460477391231",
+    "expectedDailyLvrMicro": 894781159.3933969
+   }
+  },
+  {
+   "name": "5. accrue + claim LP residuals",
+   "at": "2026-11-11T17:59:58.076Z",
+   "accrueTx": "https://solscan.io/tx/59NQMzht6BJG7Af9UxXMQz3iP72vebUA8fTLv56A5MJuK1zKTiFom1eV4ryp7mJtzJRvZDsKvrw7Ts8pvC7Xt3Du?cluster=devnet",
+   "claimTx": "https://solscan.io/tx/46GGYjk4zVXNofvsAJarFUmcgn8hXNzggsxvv7SUyjnZ669Bj193YYSu9s23V7dMCiVkzXfKyCJSXW8KUERPZHtZ?cluster=devnet",
+   "error": null,
+   "releasedYes": 1.0269099999999867,
+   "releasedNo": 1.3426909999999985,
+   "state": {
+    "price": 0.547163443573966,
+    "x": 127776497.07308702,
+    "y": 171953203.0723329,
+    "lZero": 4429699.330584627,
+    "lEff": 372805979.9908016,
+    "remainingSecs": 7083,
+    "poolValueMicro": 147687522.48266816,
+    "totalShares": "42225153439460477391231",
+    "expectedDailyLvrMicro": 900762525.9425758
+   }
+  },
+  {
+   "name": "6. withdraw half the shares + redeem pairs",
+   "at": "2026-11-11T18:00:08.459Z",
+   "tx": "https://solscan.io/tx/3YZYd3KSYTutoqbC9aRZCPMwi9jVYpgEmtY4DR7tATj9o7QettEcFCEdNQPdzvUVisTxULcafxSgLLWanbC2udqF?cluster=devnet",
+   "redeemTx": "https://solscan.io/tx/nUTijdaedoqARFaFjaZj1rHJoFQASXzZWANjKVn63Zy5tQYJQ89FwdZYEeNVK5Zusu9N23r1UQKTSrTt59BUs8H?cluster=devnet",
+   "withdrawnYes": 63.90176200000002,
+   "withdrawnNo": 85.994788,
+   "withdrawnUsdc": 0,
+   "redeemedUsdc": 108.14158399999997,
+   "position": {
+    "shares": "21112576719730238695616",
+    "collateralDeposited": 150,
+    "excessYes": 0,
+    "excessNo": 0
+   },
+   "balances": {
+    "sol": 0.16160096,
+    "usdc": 913.591584,
+    "yes": 22.083679,
+    "no": 0
+   },
+   "state": {
+    "price": 0.5471866796122957,
+    "x": 63874734.36430678,
+    "y": 85958415.0522965,
+    "lZero": 2214849.6652923133,
+    "lEff": 186271358.7453182,
+    "remainingSecs": 7073,
+    "poolValueMicro": 73791102.35775352,
+    "totalShares": "21112576719730238695616",
+    "expectedDailyLvrMicro": 450696397.83047533
+   }
+  }
+ ],
+ "wallet": "7PEu85jp4fKb97Mm4GmbNbH5bjJ25FR1gm8XfSAnyEN7",
+ "market": {
+  "pda": "HxHNS4HvrmAwpwXA5xdC3nPGYz7BQUXJ2dSDVxJuijPc",
+  "id": "148362115688642",
+  "app": "https://pm-amm-devnet.vercel.app/market/148362115688642"
+ },
+ "finished": "2026-11-11T18:00:08.461Z"
+}
