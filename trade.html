@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EDGEHOG Trader Desk</title>
+<script src="https://unpkg.com/@solana/web3.js@1.98.0/lib/index.iife.min.js"></script>
+<style>
+:root{--bg:#0d1117;--panel:#151b23;--line:#262f3a;--text:#e6edf3;--mute:#8b98a7;--acc:#f0b429;--up:#3fb950;--down:#f85149;--mono:ui-monospace,SFMono-Regular,Consolas,monospace}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif}
+header{display:flex;align-items:center;gap:12px;padding:14px 20px;border-bottom:1px solid var(--line)}
+header b{letter-spacing:.08em}header .sub{color:var(--mute)}header .sp{flex:1}
+button{background:#21262d;color:var(--text);border:1px solid var(--line);border-radius:6px;padding:8px 14px;font:inherit;cursor:pointer}
+button.primary{background:var(--acc);color:#111;border-color:var(--acc);font-weight:600}
+button:disabled{opacity:.45;cursor:not-allowed}
+main{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:16px;padding:16px 20px;max-width:1280px;margin:0 auto}
+@media (max-width:900px){main{grid-template-columns:1fr}}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:14px 16px}
+h2{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin:0 0 10px}
+select,input{background:#0d1117;color:var(--text);border:1px solid var(--line);border-radius:6px;padding:8px 10px;font:inherit;width:100%}
+.row{display:flex;gap:8px;align-items:center;margin:8px 0}.row>*{flex:1}
+.seg{display:flex;gap:0}.seg button{flex:1;border-radius:0}.seg button:first-child{border-radius:6px 0 0 6px}.seg button:last-child{border-radius:0 6px 6px 0}
+.seg button.on{background:#30363d;border-color:#8b98a7}
+table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:13px}
+td,th{padding:3px 6px;text-align:right}th{color:var(--mute);font-weight:400}td:first-child,th:first-child{text-align:left}
+.ask{color:var(--down)}.bid{color:var(--up)}
+.kv{display:grid;grid-template-columns:1fr auto;gap:4px 12px;font-family:var(--mono);font-size:13px}.kv span:nth-child(odd){color:var(--mute);font-family:system-ui}
+.big{font-size:22px;font-family:var(--mono)}.mute{color:var(--mute)}.warn{color:var(--acc)}.err{color:var(--down)}
+.steps{counter-reset:s;list-style:none;padding:0;margin:0}.steps li{counter-increment:s;padding:6px 0 6px 30px;position:relative;color:var(--mute)}
+.steps li::before{content:counter(s);position:absolute;left:0;top:5px;width:20px;height:20px;border-radius:50%;border:1px solid var(--line);text-align:center;font-size:12px;line-height:19px}
+.steps li.done{color:var(--text)}.steps li.done::before{background:var(--up);border-color:var(--up);color:#111}
+.steps li.now{color:var(--text)}.steps li.now::before{border-color:var(--acc);color:var(--acc)}
+a{color:var(--acc)}
+#log{font-family:var(--mono);font-size:12px;color:var(--mute);white-space:pre-wrap;max-height:160px;overflow:auto;margin-top:8px}
+</style>
+</head>
+<body>
+<header>
+  <b>EDGEHOG</b><span class="sub">Trader Desk · Jupiter Predict · real money</span><span class="sp"></span>
+  <span id="wallet" class="mute">no wallet</span><button id="connect">Connect Phantom</button>
+</header>
+<main>
+  <section class="panel">
+    <h2>Market</h2>
+    <select id="recent"><option value="">Loading markets traded on Jupiter in the last 3 hours…</option></select>
+    <div class="row"><input id="manual" placeholder="…or paste a market id, e.g. POLY-6836534-0"><button id="use" style="flex:0 0 auto">Use</button></div>
+    <div id="mtitle" class="mute" style="margin:6px 0 10px">Pick a market.</div>
+    <div class="row seg"><button id="sideYes" class="on">Buy YES</button><button id="sideNo">Buy NO</button></div>
+    <div class="row"><input id="amount" type="number" min="5" step="1" value="5" aria-label="Order size in USD"><select id="mint" style="flex:0 0 130px"><option value="EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v">USDC</option><option value="JuprjznTrTSp2UFa3ZBUFgwdAmtZCq4MQCwysN55USD">JupUSD</option></select></div>
+    <div id="limits" class="mute" style="font-size:12px"></div>
+    <h2 style="margin-top:16px">Live book <span id="bookAge" class="mute" style="text-transform:none;letter-spacing:0"></span></h2>
+    <table><thead><tr><th>side</th><th>price</th><th>contracts</th><th>$ at level</th></tr></thead><tbody id="book"></tbody></table>
+  </section>
+
+  <section style="display:grid;gap:16px;align-content:start">
+    <div class="panel">
+      <h2>Pre-trade cost (EDGEHOG engine)</h2>
+      <div class="kv" id="est"><span>—</span><span></span></div>
+    </div>
+    <div class="panel">
+      <h2>Order</h2>
+      <ol class="steps" id="steps">
+        <li id="s1">Get Jupiter's quote (nothing is signed yet)</li>
+        <li id="s2">Check the quote, then sign in Phantom</li>
+        <li id="s3">Jupiter fills it on Polymarket</li>
+        <li id="s4">Execution report</li>
+      </ol>
+      <div class="kv" id="quote" style="margin-top:8px"></div>
+      <div class="row" style="margin-top:12px"><button id="getQuote" class="primary" disabled>Get quote</button><button id="sign" disabled>Sign &amp; send in Phantom</button></div>
+      <div id="log"></div>
+    </div>
+    <div class="panel" id="reportPanel" hidden>
+      <h2>Execution report</h2>
+      <div class="big" id="repHead"></div>
+      <div class="kv" id="report" style="margin-top:8px"></div>
+    </div>
+  </section>
+</main>
+<script>
+const $ = id => document.getElementById(id);
+const usd = (x, d = 2) => (x < 0 ? "−$" : "$") + Math.abs(x).toFixed(d);
+const pct = x => (100 * x).toFixed(2) + "%";
+const feePer = p => 0.0181 * p + 0.052 * p * (1 - p);        // Jupiter fee per contract since 27 Oct 2026 (measured)
+const micro = v => v == null ? null : Number(v) / 1e6;
+const st = { cfg: { maxUsd: 25, minUsd: 5 }, market: null, isYes: true, raw: null, bookAt: 0, owner: null, order: null, quoteMid: null, quoteAt: 0, signedAt: 0 };
+const log = s => { $("log").textContent += `${new Date().toLocaleTimeString()}  ${s}\n`; $("log").scrollTop = 1e9; };
+const step = (n, cls) => { for (let i = 1; i <= 4; i++) $("s" + i).className = i < n ? "done" : i === n ? cls || "now" : ""; };
+async function api(path, body) {
+  const r = await fetch("/api/" + path, body ? { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) } : {});
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(j.message || `HTTP ${r.status}`);
+  return j;
+}
+function provider() { return window.phantom?.solana?.isPhantom ? window.phantom.solana : (window.solana?.isPhantom ? window.solana : null); }
+
+// ---------- book: Jupiter /orderbook is the Polymarket book in Kalshi format
+function sides() {
+  const j = st.raw || {};
+  const yb = (j.yes_dollars || []).map(([p, s]) => [Number(p), Number(s)]);
+  const nb = (j.no_dollars || []).map(([p, s]) => [Number(p), Number(s)]);
+  const bids = (st.isYes ? yb : nb).sort((a, b) => b[0] - a[0]);
+  const asks = (st.isYes ? nb : yb).map(([p, s]) => [+(1 - p).toFixed(4), s]).sort((a, b) => a[0] - b[0]);
+  return { bids, asks };
+}
+function midOf({ bids, asks }) { return bids.length && asks.length ? (bids[0][0] + asks[0][0]) / 2 : null; }
+function walk(asks, dollars) {
+  let left = dollars, n = 0, cost = 0, fee = 0;
+  for (const [p, s] of asks) {
+    // the deposit pays for contracts and their fee
+    const per = p + feePer(p), take = Math.min(s, left / per);
+    n += take; cost += take * p; fee += take * feePer(p); left -= take * per;
+    if (left <= 1e-9) break;
+  }
+  return n ? { n, avg: cost / n, fee, left } : null;
+}
+function renderBook() {
+  const b = sides(), rows = [];
+  for (const [p, s] of b.asks.slice(0, 6).reverse()) rows.push(`<tr class="ask"><td>ask</td><td>${p.toFixed(3)}</td><td>${s.toFixed(0)}</td><td>${usd(p * s, 0)}</td></tr>`);
+  const m = midOf(b);
+  rows.push(`<tr><td class="mute">mid</td><td>${m ? m.toFixed(3) : "—"}</td><td></td><td class="mute">${b.asks[0] && b.bids[0] ? "spread " + (100 * (b.asks[0][0] - b.bids[0][0])).toFixed(1) + "¢" : ""}</td></tr>`);
+  for (const [p, s] of b.bids.slice(0, 6)) rows.push(`<tr class="bid"><td>bid</td><td>${p.toFixed(3)}</td><td>${s.toFixed(0)}</td><td>${usd(p * s, 0)}</td></tr>`);
+  $("book").innerHTML = rows.join("");
+  renderEstimate();
+}
+function renderEstimate() {
+  const b = sides(), m = midOf(b), dollars = Number($("amount").value);
+  const w = m && walk(b.asks, dollars);
+  if (!w) { $("est").innerHTML = `<span>No book yet</span><span></span>`; return; }
+  const spread = w.n * (w.avg - m), total = spread + w.fee;
+  $("est").innerHTML = [
+    ["Contracts", w.n.toFixed(2)], ["Mid", m.toFixed(4)], ["Average fill", w.avg.toFixed(4)],
+    ["Spread + slippage", usd(spread)], ["Jupiter fee (est.)", usd(w.fee)],
+    ["Total cost vs mid", `${usd(total)} · ${pct(total / (w.n * m))}`],
+    ["To break even the price must reach", (w.avg + w.fee / w.n).toFixed(4)],
+  ].map(([k, v]) => `<span>${k}</span><span>${v}</span>`).join("") + (w.left > 0.01 ? `<span class="warn">Book too thin</span><span class="warn">${usd(w.left)} unfilled</span>` : "");
+}
+async function refreshBook() {
+  if (!st.market) return;
+  try { st.raw = await api("orderbook/" + st.market); st.bookAt = Date.now(); renderBook(); } catch (e) { $("bookAge").textContent = "· " + e.message; }
+}
+setInterval(() => { if (st.bookAt) $("bookAge").textContent = `· ${((Date.now() - st.bookAt) / 1000).toFixed(0)} s old`; }, 1000);
+setInterval(refreshBook, 3000);
+
+async function pick(id) {
+  st.market = id.trim(); st.raw = null; st.order = null; resetOrder();
+  $("mtitle").textContent = "Loading…";
+  try {
+    const m = await api("market/" + st.market);
+    $("mtitle").innerHTML = `<b>${m.title || st.market}</b> <span class="mute">· ${m.status || ""} · closes ${m.closeTime ? new Date(m.closeTime * 1000).toLocaleString() : "?"}</span>`;
+  } catch (e) { $("mtitle").innerHTML = `<span class="err">${e.message}</span>`; }
+  await refreshBook(); updateButtons();
+}
+function resetOrder() { st.order = null; $("quote").innerHTML = ""; step(1); updateButtons(); }
+function updateButtons() { $("getQuote").disabled = !(st.owner && st.market && st.raw); $("sign").disabled = !st.order; }
+
+// ---------- wallet
+$("connect").onclick = async () => {
+  const p = provider();
+  if (!p) { log("Phantom not found in this browser. Install it, or open this page in the browser where Phantom is installed."); return; }
+  try { const r = await p.connect(); st.owner = r.publicKey.toString(); $("wallet").textContent = st.owner.slice(0, 4) + "…" + st.owner.slice(-4); $("connect").textContent = "Connected"; updateButtons(); }
+  catch (e) { log("Wallet connection refused: " + e.message); }
+};
+
+// ---------- order flow: quote → user signs → Jupiter executes → report
+$("getQuote").onclick = async () => {
+  const dollars = Number($("amount").value);
+  if (!(dollars >= st.cfg.minUsd && dollars <= st.cfg.maxUsd)) { log(`Size must be $${st.cfg.minUsd}–$${st.cfg.maxUsd}.`); return; }
+  $("getQuote").disabled = true;
+  try {
+    await refreshBook();
+    st.quoteMid = midOf(sides()); st.quoteAt = Date.now();
+    const r = await api("orders", { ownerPubkey: st.owner, marketId: st.market, isYes: st.isYes, isBuy: true, depositAmount: String(Math.round(dollars * 1e6)), depositMint: $("mint").value });
+    st.order = r;
+    const o = r.order || {};
+    const n = Number(o.contractsDecimal ?? (o.contractsMicro != null ? o.contractsMicro / 1e6 : o.contracts));
+    $("quote").innerHTML = [
+      ["Side", `${st.isYes ? "YES" : "NO"} · ${st.market}`], ["Pay", usd(dollars) + " " + $("mint").selectedOptions[0].text],
+      ["Contracts (Jupiter)", isFinite(n) ? n.toFixed(2) : "?"], ["Avg price (Jupiter)", micro(o.newAvgPriceUsd)?.toFixed(4) ?? "?"],
+      ["Max price", o.maxBuyPriceUsd != null ? micro(o.maxBuyPriceUsd).toFixed(4) : "—"],
+      ["Fee (Jupiter est.)", micro(o.estimatedTotalFeeUsd) != null ? usd(micro(o.estimatedTotalFeeUsd)) : "?"],
+      ["Mid now", st.quoteMid?.toFixed(4) ?? "?"],
+    ].map(([k, v]) => `<span>${k}</span><span>${v}</span>`).join("") + `<span class="warn">Sign within ~45 s</span><span class="warn">the quote expires with the blockhash</span>`;
+    step(2); log(`Quote received (order ${String(o.orderPubkey || r.externalOrderId || "").slice(0, 8)}…). Nothing has been signed.`);
+  } catch (e) { log("Quote failed: " + e.message); step(1, "now"); }
+  updateButtons();
+};
+
+$("sign").onclick = async () => {
+  const p = provider(), r = st.order;
+  if (!p || !r?.transaction) return;
+  $("sign").disabled = true; $("getQuote").disabled = true;
+  try {
+    const bytes = Uint8Array.from(atob(r.transaction), c => c.charCodeAt(0));
+    const tx = solanaWeb3.VersionedTransaction.deserialize(bytes);
+    const signed = await p.signTransaction(tx);                 // the user approves in Phantom
+    st.signedAt = Date.now();
+    const b64 = btoa(String.fromCharCode(...signed.serialize()));
+    step(3); log("Signed in Phantom. Sending to Jupiter…");
+    const ex = await api("execute", { signedTransaction: b64, context: r.execution?.context });
+    if (ex.status !== "Success") throw new Error(ex.error || "execution failed");
+    log(`Transaction landed: ${ex.signature}`);
+    await waitForFill(r.order?.orderPubkey, ex.signature);
+  } catch (e) { log("Stopped: " + e.message); step(2, "now"); updateButtons(); }
+};
+
+async function waitForFill(orderPubkey, signature) {
+  let status = "?";
+  for (let i = 0; i < 45 && orderPubkey; i++) {
+    await new Promise(r => setTimeout(r, 2000));
+    try { const s = await api("orders/status/" + orderPubkey); status = s.status || s.orderStatus || JSON.stringify(s).slice(0, 60); } catch { status = "pending"; }
+    if (/filled|failed/i.test(status) && !/partially/i.test(status)) break;
+  }
+  log(`Order status: ${status}`);
+  // find the fill in the wallet's history
+  let fill = null;
+  for (let i = 0; i < 10 && !fill; i++) {
+    const h = await api(`history?ownerPubkey=${st.owner}&start=0&end=20`).catch(() => ({}));
+    fill = (h.data || []).find(e => String(e.eventType).toLowerCase() === "order_filled" && (!orderPubkey || e.orderPubkey === orderPubkey));
+    if (!fill) await new Promise(r => setTimeout(r, 2000));
+  }
+  step(4, "done");
+  await report(fill, status, signature, orderPubkey);
+}
+
+async function report(fill, status, signature, orderPubkey) {
+  $("reportPanel").hidden = false;
+  if (!fill) { $("repHead").textContent = "No fill found yet"; $("report").innerHTML = `<span>Status</span><span>${status}</span>`; return; }
+  const avg = micro(fill.avgFillPriceUsd);
+  const n = Number(fill.filledContractsDecimal ?? fill.contractsDecimal ?? micro(fill.filledContracts ?? fill.filledContractsMicro));
+  const fee = micro(fill.feeUsd) || 0, mid = st.quoteMid;
+  const tFill = Number(fill.timestamp) > 1e11 ? Number(fill.timestamp) : Number(fill.timestamp) * 1000;
+  const spread = n * (avg - mid), total = spread + fee;
+  await new Promise(r => setTimeout(r, 1000));
+  await refreshBook();
+  const midNow = midOf(sides());
+  const rep = {
+    market: st.market, side: st.isYes ? "YES" : "NO", owner: st.owner, orderPubkey, signature, status,
+    contracts: n, avgFill: avg, midAtQuote: mid, feeUsd: fee, spreadSlippageUsd: spread, totalCostUsd: total,
+    totalCostPct: total / (n * mid), quotedAt: new Date(st.quoteAt).toISOString(), signedAt: new Date(st.signedAt).toISOString(),
+    filledAt: tFill ? new Date(tFill).toISOString() : null, secondsSignToFill: tFill ? (tFill - st.signedAt) / 1000 : null,
+    midAfter: midNow, markoutUsd: midNow != null ? n * (midNow - avg) : null, engineEstimate: walk(sides().asks, Number($("amount").value)), raw: fill,
+  };
+  $("repHead").innerHTML = `${usd(total)} <span class="mute" style="font-size:14px">cost vs mid · ${pct(rep.totalCostPct)}</span>`;
+  $("report").innerHTML = [
+    ["Contracts", n.toFixed(2)], ["Average fill", avg.toFixed(4)], ["Mid when quoted", mid.toFixed(4)],
+    ["Spread + slippage", usd(spread)], ["Jupiter fee", usd(fee)],
+    ["Sign → fill", rep.secondsSignToFill != null ? rep.secondsSignToFill.toFixed(1) + " s" : "?"],
+    ["Mid now (markout)", midNow != null ? `${midNow.toFixed(4)} · ${usd(rep.markoutUsd)}` : "?"],
+    ["Transaction", signature ? `<a href="https://solscan.io/tx/${signature}" target="_blank" rel="noopener">Solscan</a>` : "?"],
+  ].map(([k, v]) => `<span>${k}</span><span>${v}</span>`).join("");
+  const saved = await api("report", rep).catch(() => null);
+  if (saved) log(`Report saved: ${saved.saved}`);
+}
+
+// ---------- wiring
+$("sideYes").onclick = () => { st.isYes = true; $("sideYes").classList.add("on"); $("sideNo").classList.remove("on"); resetOrder(); renderBook(); };
+$("sideNo").onclick = () => { st.isYes = false; $("sideNo").classList.add("on"); $("sideYes").classList.remove("on"); resetOrder(); renderBook(); };
+$("amount").oninput = () => { resetOrder(); renderEstimate(); };
+$("recent").onchange = e => e.target.value && pick(e.target.value);
+$("use").onclick = () => $("manual").value && pick($("manual").value);
+(async () => {
+  st.cfg = await api("config").catch(() => st.cfg);
+  $("limits").textContent = `Buys only · $${st.cfg.minUsd}–$${st.cfg.maxUsd} per order (local safety cap) · you sign every order in Phantom`;
+  const list = await api("recent").catch(() => []);
+  $("recent").innerHTML = `<option value="">${list.length ? "Pick a market traded on Jupiter in the last 3 hours" : "No recent markets – paste an id below"}</option>` +
+    list.map(m => `<option value="${m.marketId}">${m.event} — ${m.title}  (${m.trades} trades, ${usd(m.usd, 0)})</option>`).join("");
+  step(1);
+})();
+</script>
+</body>
+</html>

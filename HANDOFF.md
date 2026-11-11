@@ -282,3 +282,8 @@ Részletes specifikáció: ChatGPT „végleges termékspecifikáció” (a chat
 - Megjegyzés: a bridge néha a régi fájlt futtatja ugyanazon a néven → új fájlnévvel kell feltölteni (live_check.py → live_book.py).
 - Következő: valódi Jupiter-kötés a felhasználó saját tárcájával (POST /orders → aláíratlan tx → a felhasználó írja alá), majd ennek
   végrehajtási riportja; a devnetes LP-folyamat bekötése a webes LP Deskbe (burner wallet).
+- **Trader Desk – valódi kötés (2026-11-11, még nem futott élesben):** `run_trade.bat` → `trade_server.py` (localhost:8787,
+  a Jupiter-kulcs a szerveren marad, csak vétel, $5–$25/megbízás, `EDGEHOG_MAX_USD`-vel állítható) + `trade.html`.
+  Folyamat: élő könyv (Jupiter /orderbook) → EDGEHOG költségbecslés → POST /orders ajánlat (még nincs aláírás) → a felhasználó
+  aláírja a Phantomban → POST /execute → /orders/status → a kitöltés a /history-ból → végrehajtási riport (kontraktus, átlagár,
+  közép az ajánlatkor, spread+csúszás, díj, aláírás→kitöltés idő, markout) → `output/trades/*.json`. Ál-adatokkal tesztelve.
